@@ -1,0 +1,1 @@
+quarkus-init-project-exemple
