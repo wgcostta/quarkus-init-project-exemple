@@ -1,4 +1,4 @@
-package org.my.group;
+package projectquarkus;
 
 import io.quarkus.test.junit.NativeImageTest;
 

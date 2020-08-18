@@ -1,4 +1,4 @@
-package org.my.group.model;
+package projectquarkus.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

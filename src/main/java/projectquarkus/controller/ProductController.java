@@ -1,6 +1,7 @@
-package org.my.group.controller;
+package projectquarkus.controller;
 
-import org.my.group.model.Product;
+import projectquarkus.model.Product;
+import projectquarkus.service.ProductService;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -14,17 +15,17 @@ import java.util.List;
 public class ProductController {
 
     @Inject
-    EntityManager entityManager;
+    ProductService productService;
 
     @GET
     @Produces(value = MediaType.APPLICATION_JSON)
     public List<Product> getProduts(){
-        return entityManager.createQuery("select p from Product p", Product.class).getResultList();
+        return productService.getProduts();
     }
 
     @POST
     @Consumes(value = MediaType.APPLICATION_JSON)
     public void addProduct(Product p){
-        entityManager.persist(p);
+        productService.addProduct(p);
     }
 }
