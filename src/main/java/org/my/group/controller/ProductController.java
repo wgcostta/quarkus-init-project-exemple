@@ -4,13 +4,13 @@ import org.my.group.model.Product;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.transaction.Transactional;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @Path("/product")
+@Transactional
 public class ProductController {
 
     @Inject
@@ -19,6 +19,12 @@ public class ProductController {
     @GET
     @Produces(value = MediaType.APPLICATION_JSON)
     public List<Product> getProduts(){
-        return entityManager.createQuery("select * from Produto", Product.class).getResultList();
+        return entityManager.createQuery("select p from Product p", Product.class).getResultList();
+    }
+
+    @POST
+    @Consumes(value = MediaType.APPLICATION_JSON)
+    public void addProduct(Product p){
+        entityManager.persist(p);
     }
 }
